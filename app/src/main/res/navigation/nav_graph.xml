@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentUser"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/fragmentUser"
+        android:name="org.techm.optus.ui.view.user.FragmentUser"
+        android:label="FragmentUser"
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/action_fragmentUser_to_fragmentAlbum"
+            app:destination="@id/fragmentAlbum" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAlbum"
+        android:name="org.techm.optus.ui.view.album.FragmentAlbum"
+        android:label="FragmentAlbum" />
+</navigation>

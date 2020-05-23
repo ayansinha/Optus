@@ -7,7 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techm.optus.R
 import org.techm.optus.data.model.user.UserModel
 
-class UserAdapter(private var userList: List<UserModel>): RecyclerView.Adapter<UserViewHolder>() {
+class UserAdapter(private var userList: List<UserModel> , private var listener: OnItemClickListener): RecyclerView.Adapter<UserViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(item: UserModel?)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
         UserViewHolder(DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
@@ -20,5 +25,8 @@ class UserAdapter(private var userList: List<UserModel>): RecyclerView.Adapter<U
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.itemUserBinding.user = userList[position]
+        holder.itemUserBinding.root.setOnClickListener {
+            listener.onItemClick(holder.itemUserBinding.user)
+        }
     }
 }

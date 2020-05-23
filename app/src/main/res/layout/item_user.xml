@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="user"
-            type="org.techm.optus.data.model.user.UserModel"/>
+            type="org.techm.optus.data.model.user.UserModel" />
     </data>
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_8"
-    app:cardCornerRadius="@dimen/margin_8"
-    app:cardElevation="@dimen/margin_8"
-    app:cardBackgroundColor="@color/colorBlue"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8">
+        android:layout_margin="@dimen/margin_8"
+        app:cardBackgroundColor="@color/colorBlue"
+        app:cardCornerRadius="@dimen/margin_8"
+        app:cardElevation="@dimen/margin_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewUserID"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_20"
-            android:textColor="@color/colorWhite"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="@dimen/margin_8">
 
-        <TextView
-            android:id="@+id/textViewUserName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewUserID"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorWhite"
-            android:text="Name : Jack Ryan"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserID" />
+            <TextView
+                android:id="@+id/textViewUserID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{`ID : ` + user.id}"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewUserEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorWhite"
-            android:text="Email : jack.ryan@gmail.com"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
+            <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewUserID"
+                android:layout_marginTop="8dp"
+                android:text="@{`Name : ` + user.name}"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUserID" />
 
-        <TextView
-            android:id="@+id/textViewUserPhone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Phone : +91 9876543210"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/colorWhite"
-            app:layout_constraintStart_toStartOf="@+id/textViewUserEmail"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserEmail" />
+            <TextView
+                android:id="@+id/textViewUserEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{`Email : ` + user.email}"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
+
+            <TextView
+                android:id="@+id/textViewUserPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{`Phone : ` + user.phone}"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textViewUserEmail"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUserEmail" />
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
-    </layout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

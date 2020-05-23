@@ -1,4 +1,7 @@
 package org.techm.optus.ui.adapter.album
 
-class AlbumViewHolder {
+import androidx.recyclerview.widget.RecyclerView
+import org.techm.optus.databinding.ItemAlbumBinding
+
+class AlbumViewHolder(val itemAlbumBinding: ItemAlbumBinding): RecyclerView.ViewHolder(itemAlbumBinding.root) {
 }
