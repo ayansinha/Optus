@@ -35,4 +35,6 @@ fun View.showSnackBar(message: String, duration: Int = Snackbar.LENGTH_LONG) {
 fun Context.isConnection(): Boolean {
     val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
     return connectivityManager?.activeNetworkInfo?.isConnectedOrConnecting ?: false
+
+
 }

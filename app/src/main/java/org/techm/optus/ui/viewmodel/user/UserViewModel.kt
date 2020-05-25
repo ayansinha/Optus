@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.techm.optus.data.model.user.UserModel
 import org.techm.optus.data.repository.UserRepository
-import org.techm.optus.util.Constants
+import org.techm.optus.util.Constants.Companion.ERROR_MSG
 import org.techm.optus.util.Result
 import retrofit2.Response
 
@@ -24,8 +24,8 @@ class UserViewModel(private val userRepo: UserRepository): ViewModel() {
             try {
                 usersList.postValue(Result.success(userRepo.getUsersApi()))
             }catch (exception: Exception) {
-                usersList.postValue(Result.error(Constants.ERROR_MSG , null) )
-                exception.message ?: "Error! ${Constants.ERROR_MSG}"
+                usersList.postValue(Result.error(ERROR_MSG , null) )
+                exception.message ?: "Error! $ERROR_MSG"
             }
         }
     }

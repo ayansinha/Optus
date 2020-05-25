@@ -13,6 +13,14 @@
             android:id="@+id/mToolbarUser"
             android:layout_width="@dimen/margin_0"
             android:layout_height="?attr/actionBarSize"
+            android:contentInsetLeft="@dimen/margin_0"
+            android:contentInsetStart="@dimen/margin_0"
+            app:contentInsetLeft="@dimen/margin_0"
+            app:contentInsetStart="@dimen/margin_0"
+            android:contentInsetRight="@dimen/margin_0"
+            android:contentInsetEnd="@dimen/margin_0"
+            app:contentInsetRight="@dimen/margin_0"
+            app:contentInsetEnd="@dimen/margin_0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
@@ -30,6 +38,13 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_1"
+            android:background="@color/colorGrey"
+            app:layout_constraintTop_toBottomOf="@+id/mToolbarUser"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewUser"
@@ -41,7 +56,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mToolbarUser"
+            app:layout_constraintTop_toBottomOf="@+id/view"
             tools:context="org.techm.optus.ui.view.user.FragmentUser"
             tools:listitem="@layout/item_user" />
 

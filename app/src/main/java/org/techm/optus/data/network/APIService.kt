@@ -12,6 +12,6 @@ interface APIService {
     suspend fun getUsers(): Response<List<UserModel>>
 
     @GET("photos")
-    suspend fun getAlbums(@Query("albumId") id: Int): List<AlbumModel>
+    suspend fun getAlbums(@Query("albumId") id: Int): Response<List<AlbumModel>>
 
 }

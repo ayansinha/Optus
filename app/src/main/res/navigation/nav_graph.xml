@@ -23,5 +23,20 @@
     <fragment
         android:id="@+id/fragmentAlbum"
         android:name="org.techm.optus.ui.view.album.FragmentAlbum"
-        android:label="FragmentAlbum" />
+        android:label="FragmentAlbum"
+        tools:layout="@layout/fragment_album">
+        <action
+            android:id="@+id/action_fragmentAlbum_to_fragmentAlbumDetails"
+            app:destination="@id/fragmentAlbumDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAlbumDetails"
+        android:name="org.techm.optus.ui.view.album.FragmentAlbumDetails"
+        android:label="FragmentAlbumDetails"
+        tools:layout="@layout/fragment_album_details"/>
 </navigation>
