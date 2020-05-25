@@ -12,15 +12,15 @@ class AlbumViewModel(private val albumRepo: AlbumRepository): ViewModel() {
 
     private val albumList = MutableLiveData<List<AlbumModel>>()
 
-    fun getAlbumList(id: Int) {
+
+    fun getAlbumList(id: Int): LiveData<List<AlbumModel>>{
+        return getList(id)
+    }
+
+    private fun getList(id: Int):  LiveData<List<AlbumModel>>  {
         viewModelScope.launch {
             albumList.value = albumRepo.getAlbumApi(id)
         }
-
-    }
-
-    fun getAlbum(): LiveData<List<AlbumModel>> {
         return albumList
     }
-
 }

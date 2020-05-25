@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.techm.optus.data.model.user.UserModel
 import org.techm.optus.data.repository.UserRepository
+import org.techm.optus.util.Constants
 import org.techm.optus.util.Result
+import retrofit2.Response
 
 class UserViewModel(private val userRepo: UserRepository): ViewModel() {
-    private val usersList = MutableLiveData<List<UserModel>>()
+    private val usersList = MutableLiveData<Result<Response<List<UserModel>>>>()
 
     init {
         getUsersList()
@@ -18,11 +20,17 @@ class UserViewModel(private val userRepo: UserRepository): ViewModel() {
 
     private fun getUsersList(){
         viewModelScope.launch {
-            usersList.value = userRepo.getUsersApi()
+            usersList.postValue(Result.loading(null))
+            try {
+                usersList.postValue(Result.success(userRepo.getUsersApi()))
+            }catch (exception: Exception) {
+                usersList.postValue(Result.error(Constants.ERROR_MSG , null) )
+                exception.message ?: "Error! ${Constants.ERROR_MSG}"
+            }
         }
     }
 
-    fun getUserList(): LiveData<List<UserModel>> {
+    fun getUserList(): LiveData<Result<Response<List<UserModel>>>> {
         return usersList
     }
 }

@@ -24,17 +24,17 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_8">
 
-
             <ImageView
                 android:id="@+id/imageViewAlbumPhoto"
                 android:layout_width="@dimen/margin_150"
                 android:layout_height="@dimen/margin_150"
                 android:layout_marginStart="@dimen/margin_8"
                 android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_8"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:thumbnail="@{album.thumbnailUrl}"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:thumbnail="@{album.thumbnailUrl}" />
 
             <TextView
                 android:id="@+id/textViewAlbumTitle"

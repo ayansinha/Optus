@@ -1,12 +1,10 @@
 package org.techm.optus.ui.adapter.album
 
-import android.graphics.BitmapFactory
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.Picasso
 
 @BindingAdapter("thumbnail")
 fun loadAlbumImage(imageView: ImageView , url: String) {
-
-    val image = BitmapFactory.decodeStream(url.byteInputStream())
-    imageView.setImageBitmap(image)
+    Picasso.get().load(url).into(imageView)
 }
