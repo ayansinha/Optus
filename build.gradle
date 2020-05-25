@@ -36,6 +36,9 @@ ext {
     designSupportVersion = '1.1.0'
     navigation_version = '2.2.2'
     picasso_version = '2.71828'
+    fragment_version = '1.2.4'
+    espresso_version = '3.2.0'
+    mockito_version = '2.25.0'
 }
 
 task clean(type: Delete) {
