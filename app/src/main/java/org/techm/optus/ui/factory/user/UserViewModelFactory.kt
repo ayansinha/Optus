@@ -6,7 +6,7 @@ import org.techm.optus.data.repository.UserRepository
 import org.techm.optus.ui.viewmodel.user.UserViewModel
 
 /**
- * @class{UserViewModelFactory}
+ * @class{UserViewModelFactory} -> creates an instance of user view model
  */
 @Suppress("UNCHECKED_CAST")
 class UserViewModelFactory(private val userRepository: UserRepository): ViewModelProvider.Factory {

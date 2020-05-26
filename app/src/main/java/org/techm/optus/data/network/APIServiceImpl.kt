@@ -7,7 +7,7 @@ import org.techm.optus.data.repository.UserRepository
 
 
 /**
- * @class{APIServiceImpl}
+ * @class{APIServiceImpl} -> middleware for api interactions
  */
 class APIServiceImpl(private val apiService: APIService): UserRepository , AlbumRepository {
 

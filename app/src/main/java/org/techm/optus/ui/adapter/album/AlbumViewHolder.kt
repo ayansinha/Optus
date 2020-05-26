@@ -4,6 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techm.optus.databinding.ItemAlbumBinding
 
 /**
- * @class{AlbumViewHolder}
+ * @class{AlbumViewHolder} -> binds album data to view
  */
 class AlbumViewHolder(val itemAlbumBinding: ItemAlbumBinding): RecyclerView.ViewHolder(itemAlbumBinding.root)

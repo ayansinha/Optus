@@ -5,7 +5,7 @@ import android.os.Bundle
 import org.techm.optus.R
 
 /**
- * @class{MainActivity}
+ * @class{MainActivity} -> starts the main application
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

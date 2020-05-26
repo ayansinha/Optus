@@ -14,7 +14,6 @@ import org.techm.optus.R
 import org.techm.optus.data.model.album.AlbumModel
 import org.techm.optus.data.network.APIBuilder
 import org.techm.optus.data.network.APIServiceImpl
-import org.techm.optus.data.repository.AlbumRepository
 import org.techm.optus.databinding.FragmentAlbumBinding
 import org.techm.optus.ui.adapter.album.AlbumAdapter
 import org.techm.optus.ui.factory.album.AlbumViewModelFactory
@@ -34,10 +33,12 @@ import org.techm.optus.util.showSnackBar
 /**
  * @fragment{FragmentAlbum}
  */
+@Suppress("DEPRECATION")
 class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
 
     private lateinit var albumViewModel: AlbumViewModel
     private lateinit var binding: FragmentAlbumBinding
+    private lateinit var albumFactory: AlbumViewModelFactory
     private var userID = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +60,12 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
         super.onActivityCreated(savedInstanceState)
 
         binding.mToolbarAlbumTitle.text = "Album ID: $userID"
-        albumViewModel = ViewModelProviders.of(this , AlbumViewModelFactory(APIServiceImpl(APIBuilder.apiService))).get(AlbumViewModel::class.java)
+        albumFactory = AlbumViewModelFactory(APIServiceImpl(APIBuilder.apiService))
+        albumViewModel = ViewModelProviders.of(this@FragmentAlbum , albumFactory).get(AlbumViewModel::class.java)
 
+        /**
+         * check connectivity
+         */
         if (activity?.isConnection()!!) {
             setUpAPICall()
         }else {
@@ -69,6 +74,9 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
 
     }
 
+    /**
+     * setup view-model and fetch data for album and display it in recyclerview
+     **/
     private fun setUpAPICall() {
 
         albumViewModel.getAlbumList(userID).observe(viewLifecycleOwner, Observer {
@@ -87,7 +95,7 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
                         result.data.let { album ->
                             binding.recyclerViewAlbum.setHasFixedSize(true)
                             binding.recyclerViewAlbum.adapter =
-                                album?.let { albumList -> AlbumAdapter(albumList, this) }
+                                album?.let { albumList -> AlbumAdapter(albumList, this , requireContext()) }
                         }
                     }
 
@@ -102,6 +110,10 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
         })
     }
 
+
+    /**
+     * on item click of recyclerview
+     */
     override fun onItemClick(item: AlbumModel?) {
 
         val bundle = bundleOf(

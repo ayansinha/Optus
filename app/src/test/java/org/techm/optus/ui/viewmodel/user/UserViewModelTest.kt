@@ -33,7 +33,7 @@ class UserViewModelTest {
     private lateinit var userObserver: Observer<Result<List<UserModel>>>
 
     @Test
-    fun testGivenUserResponseWhenSuccess() {
+    fun `test given when user response is success`() {
 
         testCoroutineRule.runBlockingTest {
             doReturn(emptyList<UserModel>())
@@ -49,7 +49,7 @@ class UserViewModelTest {
 
 
     @Test
-    fun testGivenUserResponseWhenError() {
+    fun `test given when user response is failure`() {
         testCoroutineRule.runBlockingTest {
             doThrow(RuntimeException(ERROR_MSG))
                 .`when`(userRepository)

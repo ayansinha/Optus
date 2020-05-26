@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * @class{singleton RetrofitBuilder}
+ * @class{singleton RetrofitBuilder} -> used retrofit for network operations(API calls)
  */
 object APIBuilder {
 

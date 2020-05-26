@@ -20,6 +20,9 @@ class UserViewModel(private val userRepo: UserRepository): ViewModel() {
         getUsersList()
     }
 
+    /**
+     * fetch list of users
+     */
     private fun getUsersList(){
         viewModelScope.launch {
             usersList.postValue(Result.loading(null))

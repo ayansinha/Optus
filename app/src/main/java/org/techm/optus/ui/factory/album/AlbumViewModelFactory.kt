@@ -6,7 +6,7 @@ import org.techm.optus.data.repository.AlbumRepository
 import org.techm.optus.ui.viewmodel.album.AlbumViewModel
 
 /**
- * @class{AlbumViewModelFactory}
+ * @class{AlbumViewModelFactory} -> creates an instance of album view model
  */
 @Suppress("UNCHECKED_CAST")
 class AlbumViewModelFactory(private val albumRepository: AlbumRepository): ViewModelProvider.Factory {

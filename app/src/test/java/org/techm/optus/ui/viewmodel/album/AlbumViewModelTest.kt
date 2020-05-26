@@ -33,7 +33,7 @@ class AlbumViewModelTest {
     private lateinit var albumObserver: Observer<Result<List<AlbumModel>>>
 
     @Test
-    fun testGivenAlbumResponseWhenSuccess() {
+    fun `test given when album response is success`() {
 
         testCoroutineRule.runBlockingTest {
             doReturn(emptyList<AlbumModel>())
@@ -49,7 +49,7 @@ class AlbumViewModelTest {
     }
 
     @Test
-    fun testGivenAlbumResponseWhenError() {
+    fun `test given when album response is failure`() {
         testCoroutineRule.runBlockingTest {
             doThrow(RuntimeException(ERROR_MSG))
                 .`when`(albumRepository)

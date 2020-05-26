@@ -31,10 +31,12 @@ import org.techm.optus.util.showSnackBar
 /**
  * @fragment{FragmentUser}
  */
+@Suppress("DEPRECATION")
 class FragmentUser : Fragment(), UserAdapter.OnItemClickListener {
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var binding: FragmentUserBinding
+    private lateinit var userFactory: UserViewModelFactory
 
 
     override fun onCreateView(
@@ -51,11 +53,14 @@ class FragmentUser : Fragment(), UserAdapter.OnItemClickListener {
 
         val title: String = getString(R.string.user_info)
         binding.mToolbarUserTitle.text = title
-
+        userFactory = UserViewModelFactory(APIServiceImpl(APIBuilder.apiService))
         userViewModel =
-            ViewModelProviders.of(this, UserViewModelFactory(APIServiceImpl(APIBuilder.apiService)))
+            ViewModelProviders.of(this@FragmentUser, userFactory)
                 .get(UserViewModel::class.java)
 
+        /**
+         * check connectivity
+         */
         if (activity?.isConnection()!!) {
             setUpAPICall()
         } else {
@@ -63,6 +68,9 @@ class FragmentUser : Fragment(), UserAdapter.OnItemClickListener {
         }
     }
 
+    /**
+     * setup view-model and fetch data for user and display it in recyclerview
+     **/
     private fun setUpAPICall() {
         userViewModel.getUserList().observe(viewLifecycleOwner, Observer {
             it.let { result ->
@@ -82,7 +90,8 @@ class FragmentUser : Fragment(), UserAdapter.OnItemClickListener {
                                 user?.let { userList ->
                                     UserAdapter(
                                         userList,
-                                        this
+                                        this,
+                                        requireContext()
                                     )
                                 }
                         }
@@ -97,7 +106,9 @@ class FragmentUser : Fragment(), UserAdapter.OnItemClickListener {
             }
         })
     }
-
+    /**
+     * on item click of recyclerview
+     */
     override fun onItemClick(item: UserModel?) {
         val bundle = bundleOf(ID to item?.id)
         findNavController().navigate(R.id.action_fragmentUser_to_fragmentAlbum, bundle)

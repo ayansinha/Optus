@@ -9,6 +9,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewUserContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_8"
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewUserID"
                 android:layout_marginTop="@dimen/margin_8"
+                android:textSize="@dimen/text_size_18"
                 android:text="@{`Name : ` + user.name}"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +58,7 @@
                 android:layout_width="@dimen/margin_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8"
+                android:textSize="@dimen/text_size_18"
                 android:text="@{`Email : ` + user.email}"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8"
+                android:textSize="@dimen/text_size_18"
                 android:text="@{`Phone : ` + user.phone}"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"

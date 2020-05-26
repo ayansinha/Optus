@@ -8,6 +8,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAlbumContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/colorBlue"
@@ -36,6 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:transitionName="photoTransition"
                 android:contentDescription="@string/item_album"
+                app:error="@{@drawable/no_image_icon}"
                 app:thumbnail="@{album.thumbnailUrl}" />
 
             <TextView

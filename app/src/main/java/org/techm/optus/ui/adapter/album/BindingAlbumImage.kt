@@ -1,10 +1,14 @@
 package org.techm.optus.ui.adapter.album
 
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("thumbnail")
-fun loadAlbumImage(imageView: ImageView , url: String) {
-    Picasso.get().load(url).into(imageView)
+/**
+ * @Bind{binds the album image for data-binding}
+ */
+@BindingAdapter("thumbnail" , "error")
+fun loadAlbumImage(imageView: ImageView , url: String , error: Drawable) {
+    Picasso.get().load(url).error(error).into(imageView)
 }

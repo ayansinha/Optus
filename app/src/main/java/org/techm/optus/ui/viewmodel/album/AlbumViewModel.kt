@@ -17,13 +17,14 @@ class AlbumViewModel(private val albumRepo: AlbumRepository): ViewModel() {
 
     private val albumList = MutableLiveData<Result<List<AlbumModel>>>()
 
-
+    /**
+     * fetch list of albums
+     */
     fun getAlbumList(id: Int): LiveData<Result<List<AlbumModel>>>{
-        return getList(id)
+        return getAlbum(id)
     }
 
-    private fun getList(id: Int):  LiveData<Result<List<AlbumModel>>>  {
-
+    private fun getAlbum(id: Int):  LiveData<Result<List<AlbumModel>>>  {
         viewModelScope.launch {
             albumList.postValue(Result.loading(null))
             try {
@@ -33,7 +34,6 @@ class AlbumViewModel(private val albumRepo: AlbumRepository): ViewModel() {
                 exception.message ?: "Error! $ERROR_MSG"
             }
         }
-
         return albumList
     }
 }
