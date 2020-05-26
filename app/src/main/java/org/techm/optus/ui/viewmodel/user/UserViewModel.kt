@@ -9,10 +9,12 @@ import org.techm.optus.data.model.user.UserModel
 import org.techm.optus.data.repository.UserRepository
 import org.techm.optus.util.Constants.Companion.ERROR_MSG
 import org.techm.optus.util.Result
-import retrofit2.Response
 
+/**
+ * @class{UserViewModel}
+ */
 class UserViewModel(private val userRepo: UserRepository): ViewModel() {
-    private val usersList = MutableLiveData<Result<Response<List<UserModel>>>>()
+    private val usersList = MutableLiveData<Result<List<UserModel>>>()
 
     init {
         getUsersList()
@@ -22,7 +24,7 @@ class UserViewModel(private val userRepo: UserRepository): ViewModel() {
         viewModelScope.launch {
             usersList.postValue(Result.loading(null))
             try {
-                usersList.postValue(Result.success(userRepo.getUsersApi()))
+                usersList.postValue(Result.success(userRepo.getUsers()))
             }catch (exception: Exception) {
                 usersList.postValue(Result.error(ERROR_MSG , null) )
                 exception.message ?: "Error! $ERROR_MSG"
@@ -30,7 +32,7 @@ class UserViewModel(private val userRepo: UserRepository): ViewModel() {
         }
     }
 
-    fun getUserList(): LiveData<Result<Response<List<UserModel>>>> {
+    fun getUserList(): LiveData<Result<List<UserModel>>> {
         return usersList
     }
 }

@@ -4,6 +4,9 @@ import org.techm.optus.util.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * @class{singleton RetrofitBuilder}
+ */
 object APIBuilder {
 
     private fun getNetworkInstance(): Retrofit {

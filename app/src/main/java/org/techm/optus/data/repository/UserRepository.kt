@@ -1,8 +1,10 @@
 package org.techm.optus.data.repository
 
-import org.techm.optus.data.network.APIService
+import org.techm.optus.data.model.user.UserModel
 
-class UserRepository(private val apiService: APIService) {
-
-    suspend fun getUsersApi() = apiService.getUsers()
+/**
+ * @interface{UserRepository}
+ */
+interface UserRepository{
+    suspend fun getUsers() :List<UserModel>
 }

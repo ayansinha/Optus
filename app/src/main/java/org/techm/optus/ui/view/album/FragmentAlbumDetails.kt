@@ -11,7 +11,15 @@ import androidx.transition.TransitionInflater
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.header_view.view.*
 import org.techm.optus.databinding.FragmentAlbumDetailsBinding
+import org.techm.optus.util.Constants.Companion.ALBUM_ID
+import org.techm.optus.util.Constants.Companion.PHOTO_ID
+import org.techm.optus.util.Constants.Companion.TITLE
+import org.techm.optus.util.Constants.Companion.URL
 
+
+/**
+ * @fragment{FragmentAlbumDetails}
+ */
 class FragmentAlbumDetails: Fragment() {
 
     private lateinit var binding: FragmentAlbumDetailsBinding
@@ -27,10 +35,10 @@ class FragmentAlbumDetails: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        albumID = arguments?.getInt("albumID")!!
-        photoID = arguments?.getInt("photoID")!!
-        title = arguments?.getString("title")!!
-        url = arguments?.getString("url")!!
+        albumID = arguments?.getInt(ALBUM_ID)!!
+        photoID = arguments?.getInt(PHOTO_ID)!!
+        title = arguments?.getString(TITLE)!!
+        url = arguments?.getString(URL)!!
     }
 
     @SuppressLint("SetTextI18n")

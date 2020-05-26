@@ -7,5 +7,4 @@ import com.squareup.picasso.Picasso
 @BindingAdapter("thumbnail")
 fun loadAlbumImage(imageView: ImageView , url: String) {
     Picasso.get().load(url).into(imageView)
-
 }

@@ -89,4 +89,7 @@ dependencies {
      * picasso dependency
      */
     implementation "com.squareup.picasso:picasso:$rootProject.picasso_version"
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

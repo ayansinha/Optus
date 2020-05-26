@@ -1,5 +1,9 @@
 package org.techm.optus.util
 
+
+/**
+ * @class{Result status for initialising status of network API}
+ */
 data class Result<out T>(val status: Status, val data: T?, val message: String?) {
 
     companion object {

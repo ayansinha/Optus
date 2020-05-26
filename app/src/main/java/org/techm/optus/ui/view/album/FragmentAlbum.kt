@@ -12,20 +12,27 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import org.techm.optus.R
 import org.techm.optus.data.model.album.AlbumModel
+import org.techm.optus.data.network.APIBuilder
 import org.techm.optus.data.network.APIServiceImpl
 import org.techm.optus.data.repository.AlbumRepository
 import org.techm.optus.databinding.FragmentAlbumBinding
 import org.techm.optus.ui.adapter.album.AlbumAdapter
 import org.techm.optus.ui.factory.album.AlbumViewModelFactory
 import org.techm.optus.ui.viewmodel.album.AlbumViewModel
+import org.techm.optus.util.Constants.Companion.ALBUM_ID
 import org.techm.optus.util.Constants.Companion.ERROR_MSG
+import org.techm.optus.util.Constants.Companion.ID
 import org.techm.optus.util.Constants.Companion.NO_CONNECTION
+import org.techm.optus.util.Constants.Companion.PHOTO_ID
+import org.techm.optus.util.Constants.Companion.TITLE
+import org.techm.optus.util.Constants.Companion.URL
 import org.techm.optus.util.Status
 import org.techm.optus.util.isConnection
 import org.techm.optus.util.showSnackBar
 
+
 /**
- * A simple [Fragment] subclass.
+ * @fragment{FragmentAlbum}
  */
 class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
 
@@ -35,7 +42,7 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userID = arguments?.getInt("id")!!
+        userID = arguments?.getInt(ID)!!
     }
 
     override fun onCreateView(
@@ -52,9 +59,7 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
         super.onActivityCreated(savedInstanceState)
 
         binding.mToolbarAlbumTitle.text = "Album ID: $userID"
-        albumViewModel =
-            ViewModelProviders.of(this, AlbumViewModelFactory(AlbumRepository(APIServiceImpl())))
-                .get(AlbumViewModel::class.java)
+        albumViewModel = ViewModelProviders.of(this , AlbumViewModelFactory(APIServiceImpl(APIBuilder.apiService))).get(AlbumViewModel::class.java)
 
         if (activity?.isConnection()!!) {
             setUpAPICall()
@@ -81,9 +86,8 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
                         binding.progressBarAlbum.visibility = View.GONE
                         result.data.let { album ->
                             binding.recyclerViewAlbum.setHasFixedSize(true)
-                            binding.recyclerViewAlbum.adapter = album?.body()?.let { data ->
-                                AlbumAdapter(data, this)
-                            }
+                            binding.recyclerViewAlbum.adapter =
+                                album?.let { albumList -> AlbumAdapter(albumList, this) }
                         }
                     }
 
@@ -101,10 +105,10 @@ class FragmentAlbum : Fragment(), AlbumAdapter.OnImageClickListener {
     override fun onItemClick(item: AlbumModel?) {
 
         val bundle = bundleOf(
-            "albumID" to item?.albumId,
-            "photoID" to item?.id,
-            "title" to item?.title,
-            "url" to item?.url
+            ALBUM_ID to item?.albumId,
+            PHOTO_ID to item?.id,
+            TITLE to item?.title,
+            URL to item?.url
         )
 
         findNavController().navigate(R.id.action_fragmentAlbum_to_fragmentAlbumDetails , bundle)

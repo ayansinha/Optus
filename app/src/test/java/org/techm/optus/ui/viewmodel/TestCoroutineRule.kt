@@ -1,4 +1,4 @@
-package org.techm.optus
+package org.techm.optus.ui.viewmodel
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

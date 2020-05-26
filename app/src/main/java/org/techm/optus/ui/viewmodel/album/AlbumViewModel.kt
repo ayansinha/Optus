@@ -9,18 +9,20 @@ import org.techm.optus.data.model.album.AlbumModel
 import org.techm.optus.data.repository.AlbumRepository
 import org.techm.optus.util.Constants.Companion.ERROR_MSG
 import org.techm.optus.util.Result
-import retrofit2.Response
 
+/**
+ * @class{AlbumViewModel}
+ */
 class AlbumViewModel(private val albumRepo: AlbumRepository): ViewModel() {
 
-    private val albumList = MutableLiveData<Result<Response<List<AlbumModel>>>>()
+    private val albumList = MutableLiveData<Result<List<AlbumModel>>>()
 
 
-    fun getAlbumList(id: Int): LiveData<Result<Response<List<AlbumModel>>>>{
+    fun getAlbumList(id: Int): LiveData<Result<List<AlbumModel>>>{
         return getList(id)
     }
 
-    private fun getList(id: Int):  LiveData<Result<Response<List<AlbumModel>>>>  {
+    private fun getList(id: Int):  LiveData<Result<List<AlbumModel>>>  {
 
         viewModelScope.launch {
             albumList.postValue(Result.loading(null))

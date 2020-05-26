@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techm.optus.R
 import org.techm.optus.data.model.album.AlbumModel
 
+/**
+ * @class{AlbumAdapter}
+ */
 class AlbumAdapter(private var albumList: List<AlbumModel> , private var listener: OnImageClickListener) : RecyclerView.Adapter<AlbumViewHolder>() {
 
     interface OnImageClickListener {

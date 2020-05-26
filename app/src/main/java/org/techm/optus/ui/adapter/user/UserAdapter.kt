@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techm.optus.R
 import org.techm.optus.data.model.user.UserModel
 
+/**
+ * @class{UserAdapter}
+ */
 class UserAdapter(private var userList: List<UserModel> , private var listener: OnItemClickListener): RecyclerView.Adapter<UserViewHolder>() {
 
     interface OnItemClickListener {
