@@ -31,7 +31,6 @@ class FragmentUserTest {
 
     @Before
     fun setUp() {
-
         activityRule.launchActivity(intent)
     }
 
